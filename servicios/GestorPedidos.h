@@ -18,7 +18,6 @@ private:
     int capacidadMemoria;
     int cantidadMemoria;
 
-    void redimensionarMemoria();
     void retirarPedidoDeMemoria(Pedido* pedido); // Elimina y libera
 
     // Estadísticas O(1) (Total activo excluye cancelados)
