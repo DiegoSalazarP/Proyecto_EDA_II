@@ -13,15 +13,14 @@ private:
     MinHeap* minHeap;
     AVL* arbolAVL;
 
-    // Administración centralizada de memoria
+    // AdministraciÃ³n centralizada de memoria
     Pedido** registroMemoria;
     int capacidadMemoria;
     int cantidadMemoria;
 
-    void redimensionarMemoria();
     void retirarPedidoDeMemoria(Pedido* pedido); // Elimina y libera
 
-    // Estadísticas O(1) (Total activo excluye cancelados)
+    // EstadÃ­sticas O(1) (Total activo excluye cancelados)
     int totalPedidosRegistrados;
     int cantidadPendientes;
     long long montoAcumulado;
@@ -45,7 +44,7 @@ public:
     bool cancelarPedido(std::string idPedido); // Actualiza estado, resta monto y elimina de Hash y AVL
     bool actualizarEstado(std::string idPedido, std::string nuevoEstado); // Ej: Pendiente -> Entregado
 
-    // Estadísticas O(1)
+    // EstadÃ­sticas O(1)
     void mostrarEstadisticas();
 };
 
