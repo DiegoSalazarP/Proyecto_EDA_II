@@ -1,0 +1,19 @@
+# depslib dependency file v1.0
+1794186759 source:c:\users\usuario\desktop\ciclo 2026-ii\eda2\proyecto_eda_ii\estructuras\avl.cpp
+	"AVL.h"
+	<iostream>
+	<iomanip>
+
+1794178595 c:\users\usuario\desktop\ciclo 2026-ii\eda2\proyecto_eda_ii\estructuras\avl.h
+	"../modelos/Pedido.h"
+	<string>
+
+1794178595 c:\users\usuario\desktop\ciclo 2026-ii\eda2\proyecto_eda_ii\modelos\pedido.h
+	<string>
+
+1794187681 source:c:\users\usuario\desktop\ciclo 2026-ii\eda2\proyecto_eda_ii\main.cpp
+	<iostream>
+	<string>
+	"modelos/Pedido.h"
+	"estructuras/AVL.h"
+

@@ -1,0 +1,9 @@
+# Excluir carpetas y archivos temporales de compilación (NO se suben)
+bin/
+obj/
+*.o
+*.exe
+
+# Archivos temporales del sistema operativo
+.DS_Store
+Thumbs.db
