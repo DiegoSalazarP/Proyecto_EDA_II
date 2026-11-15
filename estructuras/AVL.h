@@ -39,7 +39,7 @@ public:
     bool insertar(Pedido* pedido);
     bool eliminar(Pedido* pedido); // Se pasa el pedido para extraer sus claves (fecha, hora, id)
     void inorden(); // Limitado a 30 según documento
-    void consultarRango(const std::string& fechaInicio, const std::string& fechaFin);
+    void consultarRango(const std::string& fechaInicio, const std::string& fechaFin, int& cantidad, long long& montoAcumulado);
 };
 
 #endif // AVL_H

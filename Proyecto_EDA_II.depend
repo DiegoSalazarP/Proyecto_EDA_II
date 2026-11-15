@@ -1,19 +1,81 @@
 # depslib dependency file v1.0
-1794186759 source:c:\users\usuario\desktop\ciclo 2026-ii\eda2\proyecto_eda_ii\estructuras\avl.cpp
+1794557294 source:c:\users\usuario\desktop\ciclo 2026-ii\eda2\proyecto_eda_ii\estructuras\avl.cpp
 	"AVL.h"
 	<iostream>
 	<iomanip>
 
-1794178595 c:\users\usuario\desktop\ciclo 2026-ii\eda2\proyecto_eda_ii\estructuras\avl.h
+1794557120 c:\users\usuario\desktop\ciclo 2026-ii\eda2\proyecto_eda_ii\estructuras\avl.h
 	"../modelos/Pedido.h"
 	<string>
 
 1794178595 c:\users\usuario\desktop\ciclo 2026-ii\eda2\proyecto_eda_ii\modelos\pedido.h
 	<string>
 
-1794187681 source:c:\users\usuario\desktop\ciclo 2026-ii\eda2\proyecto_eda_ii\main.cpp
+1794556614 source:c:\users\usuario\desktop\ciclo 2026-ii\eda2\proyecto_eda_ii\main.cpp
 	<iostream>
 	<string>
 	"modelos/Pedido.h"
 	"estructuras/AVL.h"
+
+1794539169 source:c:\users\usuario\desktop\ciclo 2026-ii\eda2\proyecto_eda_ii\servicios\gestorpedidos.cpp
+	"GestorPedidos.h"
+	<iostream>
+	<iomanip>
+	<climits>
+	<stdexcept>
+
+1794178595 c:\users\usuario\desktop\ciclo 2026-ii\eda2\proyecto_eda_ii\servicios\gestorpedidos.h
+	"../modelos/Pedido.h"
+	"../estructuras/TablaHash.h"
+	"../estructuras/MinHeap.h"
+	"../estructuras/AVL.h"
+	<string>
+
+1794718028 c:\users\usuario\desktop\ciclo 2026-ii\eda2\proyecto_eda_ii\estructuras\tablahash.h
+	"../modelos/Pedido.h"
+	<string>
+
+1794717990 c:\users\usuario\desktop\ciclo 2026-ii\eda2\proyecto_eda_ii\estructuras\minheap.h
+	"../modelos/Pedido.h"
+
+1794538933 source:c:\users\usuario\desktop\ciclo 2026-ii\eda2\proyecto_eda_ii\servicios\lectorcsv.cpp
+	"LectorCSV.h"
+	<fstream>
+	<iostream>
+	<climits>
+
+1794538876 c:\users\usuario\desktop\ciclo 2026-ii\eda2\proyecto_eda_ii\servicios\lectorcsv.h
+	<string>
+	"GestorPedidos.h"
+
+1794715074 source:c:\users\usuario\desktop\ciclo 2026-ii\eda2\proyecto_eda_ii\estructuras\minheap.cpp
+	"MinHeap.h"
+
+1794639456 source:c:\users\usuario\desktop\ciclo 2026-ii\eda2\proyecto_eda_ii\estructuras\tablahash.cpp
+	"TablaHash.h"
+
+1794639456 source:c:\users\usuario\desktop\ciclo 2026-ii\eda2\proyecto_eda_ii\pruebas\pruebashash.cpp
+	<iostream>
+	<cassert>
+	<chrono>
+	<cstdio>
+	"../modelos/Pedido.h"
+	"../estructuras/TablaHash.h"
+
+1794715074 source:c:\users\usuario\desktop\ciclo 2026-ii\eda2\proyecto_eda_ii\pruebas\pruebasheap.cpp
+	<iostream>
+	<cassert>
+	<chrono>
+	<cstdio>
+	"../modelos/Pedido.h"
+	"../estructuras/MinHeap.h"
+
+1794719708 source:c:\users\usuario\desktop\ciclo 2026-ii\eda2\proyecto_eda_ii\pruebas\pruebasavl.cpp
+	<iostream>
+	<cassert>
+	<chrono>
+	<cstdio>
+	<string>
+	"../modelos/Pedido.h"
+	"../estructuras/AVL.h"
 

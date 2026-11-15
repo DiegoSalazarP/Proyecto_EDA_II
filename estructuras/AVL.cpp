@@ -384,65 +384,33 @@ void AVL::inorden() {
 // --------------------------------------------------
 // CONSULTA POR RANGO DE FECHAS
 // --------------------------------------------------
+void AVL::consultarRango(const std::string& fechaInicio, const std::string& fechaFin, int& cantidad, long long& montoAcumulado) {
+    cantidad = 0;
+    montoAcumulado = 0;
+    if (fechaInicio > fechaFin) return;
+    consultarRangoRecursivo(raiz, fechaInicio, fechaFin, cantidad, montoAcumulado);
+}
+
 void AVL::consultarRangoRecursivo(NodoAVL* nodo, const std::string& fechaInicio, const std::string& fechaFin, int& cantidad, long long& montoAcumulado) {
     if (nodo == nullptr) {
         return;
     }
 
-    // Explorar izquierda si puede contener fechas válidas
+    // PODA 1: Solo bajamos por la izquierda si la fecha del nodo actual es mayor o igual
+    // a la de inicio. Si es estrictamente menor, todo a su izquierda también lo será.
     if (nodo->pedido->fecha >= fechaInicio) {
-        consultarRangoRecursivo(
-            nodo->izquierdo,
-            fechaInicio,
-            fechaFin,
-            cantidad,
-            montoAcumulado
-        );
+        consultarRangoRecursivo(nodo->izquierdo, fechaInicio, fechaFin, cantidad, montoAcumulado);
     }
 
-    // Verificar si el pedido pertenece al rango inclusivo
+    // Acumulación: Procesamos el nodo si está estrictamente dentro del intervalo.
     if (nodo->pedido->fecha >= fechaInicio && nodo->pedido->fecha <= fechaFin) {
         cantidad++;
         montoAcumulado += nodo->pedido->montoCentavos;
     }
 
-    // Explorar derecha si puede contener fechas válidas
+    // PODA 2: Solo bajamos por la derecha si la fecha del nodo actual es menor o igual
+    // a la de fin. Si es estrictamente mayor, todo a su derecha también lo será.
     if (nodo->pedido->fecha <= fechaFin) {
-        consultarRangoRecursivo(
-            nodo->derecho,
-            fechaInicio,
-            fechaFin,
-            cantidad,
-            montoAcumulado
-        );
+        consultarRangoRecursivo(nodo->derecho, fechaInicio, fechaFin, cantidad, montoAcumulado);
     }
-}
-
-void AVL::consultarRango(const std::string& fechaInicio, const std::string& fechaFin) {
-    if (fechaInicio > fechaFin) {
-        std::cout << "Error: el rango de fechas no es valido.\n";
-        return;
-    }
-
-    int cantidad = 0;
-    long long montoAcumulado = 0;
-
-    consultarRangoRecursivo(
-        raiz,
-        fechaInicio,
-        fechaFin,
-        cantidad,
-        montoAcumulado
-    );
-
-    std::cout << "\n--- AUDITORIA POR RANGO DE FECHAS ---\n";
-
-    std::cout << "Fecha inicial: " << fechaInicio << "\n";
-    std::cout << "Fecha final: " << fechaFin << "\n";
-    std::cout << "Cantidad de pedidos: " << cantidad << "\n";
-
-    std::cout << "Monto acumulado: ";
-    imprimirMonto(montoAcumulado);
-
-    std::cout << "\n";
 }

@@ -34,11 +34,19 @@
 		</Compiler>
 		<Unit filename="estructuras/AVL.cpp" />
 		<Unit filename="estructuras/AVL.h" />
+		<Unit filename="estructuras/MinHeap.cpp" />
 		<Unit filename="estructuras/MinHeap.h" />
+		<Unit filename="estructuras/TablaHash.cpp" />
 		<Unit filename="estructuras/TablaHash.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="modelos/Pedido.h" />
+		<Unit filename="pruebas/pruebasAVL.cpp" />
+		<Unit filename="pruebas/pruebasHash.cpp" />
+		<Unit filename="pruebas/pruebasHeap.cpp" />
+		<Unit filename="servicios/GestorPedidos.cpp" />
 		<Unit filename="servicios/GestorPedidos.h" />
+		<Unit filename="servicios/LectorCSV.cpp" />
+		<Unit filename="servicios/LectorCSV.h" />
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>

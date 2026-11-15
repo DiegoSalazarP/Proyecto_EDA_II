@@ -16,6 +16,10 @@ private:
     bool esMayorUrgencia(const Pedido* p1,const Pedido* p2) const;
 
 public:
+    // Evitar copias accidentales de la estructura
+    MinHeap(const MinHeap&) = delete;
+    MinHeap& operator=(const MinHeap&) = delete;
+
     MinHeap(int capacidadInicial);
     ~MinHeap(); // Libera el arreglo dinámico, NO los objetos Pedido
 

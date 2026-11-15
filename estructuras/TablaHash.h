@@ -20,6 +20,10 @@ private:
     int funcionHash(const std::string& idPedido);
 
 public:
+    // Evitar copias accidentales de la estructura
+    TablaHash(const TablaHash&) = delete;
+    TablaHash& operator=(const TablaHash&) = delete;
+
     TablaHash(int capacidadInicial);
     ~TablaHash(); // Libera los nodos NodoHash y el arreglo buckets, NO los objetos Pedido
 
