@@ -221,3 +221,80 @@ void GestorPedidos::mostrarEstadisticas() {
               << std::setfill(' ') << "\n";
     std::cout << "-------------------------------------------\n";
 }
+
+// --------------------------------------------------
+// AUXILIARES DE VALIDACIÓN (Visibles solo en este archivo)
+// --------------------------------------------------
+namespace {
+    bool esBisiesto(int anio) {
+        return (anio % 4 == 0 && anio % 100 != 0) || (anio % 400 == 0);
+    }
+
+    int diasEnMes(int mes, int anio) {
+        if (mes == 2) return esBisiesto(anio) ? 29 : 28;
+        if (mes == 4 || mes == 6 || mes == 9 || mes == 11) return 30;
+        return 31;
+    }
+
+    bool esFechaValida(const std::string& fecha) {
+        if (fecha.length() != 10) return false;
+        if (fecha[4] != '-' || fecha[7] != '-') return false;
+
+        for (int i = 0; i < 10; ++i) {
+            if (i == 4 || i == 7) continue;
+            if (fecha[i] < '0' || fecha[i] > '9') return false;
+        }
+
+        try {
+            int anio = std::stoi(fecha.substr(0, 4));
+            int mes  = std::stoi(fecha.substr(5, 2));
+            int dia  = std::stoi(fecha.substr(8, 2));
+
+            if (anio <= 2000 || mes < 1 || mes > 12) return false;
+            return (dia >= 1 && dia <= diasEnMes(mes, anio));
+        } catch (...) {
+            return false;
+        }
+    }
+}
+
+// --------------------------------------------------
+// CONSULTAS DELEGADAS
+// --------------------------------------------------
+
+const Pedido* GestorPedidos::buscarPedido(const std::string& id) {
+    if (id.empty() || tablaHash == nullptr)
+        return nullptr;
+
+    return tablaHash->buscar(id);
+}
+
+void GestorPedidos::obtenerTop30Cronologico(const Pedido** resultados, int& cantidad) {
+    cantidad = 0;
+
+    if (resultados == nullptr || arbolAVL == nullptr)
+        return;
+
+    arbolAVL->obtenerTop30(resultados, cantidad);
+}
+
+bool GestorPedidos::auditarPorRangoFecha(
+    const std::string& fechaInicio,
+    const std::string& fechaFin,
+    int& cantidad,
+    long long& montoAcumulado) {
+
+    cantidad = 0;
+    montoAcumulado = 0;
+
+    if (!esFechaValida(fechaInicio) || !esFechaValida(fechaFin)) {
+        return false;
+    }
+
+    if (fechaInicio > fechaFin || arbolAVL == nullptr)
+        return false;
+
+    arbolAVL->consultarRango(fechaInicio, fechaFin, cantidad, montoAcumulado);
+
+    return true;
+}

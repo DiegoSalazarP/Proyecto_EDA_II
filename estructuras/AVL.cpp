@@ -351,19 +351,24 @@ bool AVL::eliminar(Pedido* pedido) {
 // --------------------------------------------------
 // RECORRIDO INORDEN (MÁXIMO 30 PEDIDOS)
 // --------------------------------------------------
-void AVL::inordenRecursivo(NodoAVL* nodo, int& contador) {
+void AVL::inordenRecursivo(NodoAVL* nodo, const Pedido** resultados, int& contador) {
     if (nodo == nullptr || contador >= 30) {
         return;
     }
 
-    inordenRecursivo(nodo->izquierdo, contador);
+    inordenRecursivo(nodo->izquierdo, resultados, contador);
 
     if (contador < 30) {
-        imprimirPedido(nodo->pedido);
-
+        resultados[contador] = nodo->pedido;
         contador++;
     }
-    inordenRecursivo(nodo->derecho, contador);
+
+    inordenRecursivo(nodo->derecho, resultados, contador);
+}
+
+void AVL::obtenerTop30(const Pedido** resultados, int& contador) {
+    contador = 0;
+    inordenRecursivo(raiz, resultados, contador);
 }
 
 void AVL::inorden() {

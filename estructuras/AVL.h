@@ -26,7 +26,7 @@ private:
     NodoAVL* eliminarRecursivo(NodoAVL* nodo, Pedido* pedido);
     NodoAVL* encontrarMinimo(NodoAVL* nodo);
 
-    void inordenRecursivo(NodoAVL* nodo, int& contador);
+    void inordenRecursivo(NodoAVL* nodo, const Pedido** resultados, int& contador);
     void consultarRangoRecursivo(NodoAVL* nodo, const std::string& fechaInicio, const std::string& fechaFin, int& cantidad, long long& montoAcumulado);
 
     // Función auxiliar para comparar las claves compuestas
@@ -40,6 +40,7 @@ public:
     bool eliminar(Pedido* pedido); // Se pasa el pedido para extraer sus claves (fecha, hora, id)
     void inorden(); // Limitado a 30 según documento
     void consultarRango(const std::string& fechaInicio, const std::string& fechaFin, int& cantidad, long long& montoAcumulado);
+    void obtenerTop30(const Pedido** resultados, int& contador);
 };
 
 #endif // AVL_H

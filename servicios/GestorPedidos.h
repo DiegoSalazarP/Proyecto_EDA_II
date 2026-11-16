@@ -43,6 +43,9 @@ public:
     void despacharPedidos(int n);
     bool cancelarPedido(std::string idPedido); // Actualiza estado, resta monto y elimina de Hash y AVL
     bool actualizarEstado(std::string idPedido, std::string nuevoEstado); // Ej: Pendiente -> Entregado
+    const Pedido* buscarPedido(const std::string& id);
+    void obtenerTop30Cronologico(const Pedido** resultados, int& cantidad);
+    bool auditarPorRangoFecha(const std::string& fechaInicio, const std::string& fechaFin, int& cantidad, long long& montoAcumulado);
 
     // Estadísticas O(1)
     void mostrarEstadisticas();
