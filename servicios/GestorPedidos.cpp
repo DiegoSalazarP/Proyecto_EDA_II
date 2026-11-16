@@ -5,6 +5,61 @@
 #include <stdexcept>
 
 // --------------------------------------------------
+// AUXILIARES DE VALIDACIÓN
+// --------------------------------------------------
+namespace {
+    bool esBisiesto(int anio) {
+        return (anio % 4 == 0 && anio % 100 != 0) || (anio % 400 == 0);
+    }
+
+    int diasEnMes(int mes, int anio) {
+        if (mes == 2) return esBisiesto(anio) ? 29 : 28;
+        if (mes == 4 || mes == 6 || mes == 9 || mes == 11) return 30;
+        return 31;
+    }
+
+    bool esFechaValida(const std::string& fecha) {
+        if (fecha.length() != 10) return false;
+        if (fecha[4] != '-' || fecha[7] != '-') return false;
+
+        for (int i = 0; i < 10; ++i) {
+            if (i == 4 || i == 7) continue;
+            if (fecha[i] < '0' || fecha[i] > '9') return false;
+        }
+
+        try {
+            int anio = std::stoi(fecha.substr(0, 4));
+            int mes  = std::stoi(fecha.substr(5, 2));
+            int dia  = std::stoi(fecha.substr(8, 2));
+
+            if (anio <= 2000 || mes < 1 || mes > 12) return false;
+            return (dia >= 1 && dia <= diasEnMes(mes, anio));
+        } catch (...) {
+            return false;
+        }
+    }
+
+    bool esHoraValida(const std::string& hora) {
+        if (hora.length() != 8) return false;
+        if (hora[2] != ':' || hora[5] != ':') return false;
+
+        for (int i = 0; i < 8; ++i) {
+            if (i == 2 || i == 5) continue;
+            if (hora[i] < '0' || hora[i] > '9') return false;
+        }
+
+        try {
+            int h = std::stoi(hora.substr(0, 2));
+            int m = std::stoi(hora.substr(3, 2));
+            int s = std::stoi(hora.substr(6, 2));
+            return (h >= 0 && h <= 23 && m >= 0 && m <= 59 && s >= 0 && s <= 59);
+        } catch (...) {
+            return false;
+        }
+    }
+}
+
+// --------------------------------------------------
 // CONSTRUCTOR Y DESTRUCTOR
 // --------------------------------------------------
 
@@ -75,7 +130,7 @@ bool GestorPedidos::registrarPedido(const std::string& id, const std::string& dn
     if (tipo != "Normal" && tipo != "Express" && tipo != "SameDay") return false;
     if (prioridad < 1 || prioridad > 10) return false;
     if (montoCentavos <= 0) return false;
-    if (fecha.length() != 10 || hora.length() != 8) return false;
+    if (!esFechaValida(fecha) || !esHoraValida(hora)) return false;
     if (estado != "Pendiente" && estado != "EnTransito" && estado != "Entregado") return false;
 
     // 2. Prevención de desbordamiento aritmético en el monto acumulado
@@ -220,42 +275,6 @@ void GestorPedidos::mostrarEstadisticas() {
               << std::setw(2) << std::setfill('0') << (valor % 100)
               << std::setfill(' ') << "\n";
     std::cout << "-------------------------------------------\n";
-}
-
-// --------------------------------------------------
-// AUXILIARES DE VALIDACIÓN (Visibles solo en este archivo)
-// --------------------------------------------------
-namespace {
-    bool esBisiesto(int anio) {
-        return (anio % 4 == 0 && anio % 100 != 0) || (anio % 400 == 0);
-    }
-
-    int diasEnMes(int mes, int anio) {
-        if (mes == 2) return esBisiesto(anio) ? 29 : 28;
-        if (mes == 4 || mes == 6 || mes == 9 || mes == 11) return 30;
-        return 31;
-    }
-
-    bool esFechaValida(const std::string& fecha) {
-        if (fecha.length() != 10) return false;
-        if (fecha[4] != '-' || fecha[7] != '-') return false;
-
-        for (int i = 0; i < 10; ++i) {
-            if (i == 4 || i == 7) continue;
-            if (fecha[i] < '0' || fecha[i] > '9') return false;
-        }
-
-        try {
-            int anio = std::stoi(fecha.substr(0, 4));
-            int mes  = std::stoi(fecha.substr(5, 2));
-            int dia  = std::stoi(fecha.substr(8, 2));
-
-            if (anio <= 2000 || mes < 1 || mes > 12) return false;
-            return (dia >= 1 && dia <= diasEnMes(mes, anio));
-        } catch (...) {
-            return false;
-        }
-    }
 }
 
 // --------------------------------------------------

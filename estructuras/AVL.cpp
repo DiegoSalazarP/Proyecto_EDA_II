@@ -43,7 +43,7 @@ namespace {
                   << std::setfill(' ');
     }
 
-    void imprimirPedido(Pedido* pedido) {
+    void imprimirPedido(const Pedido* pedido) { // <-- Se agregó const
         std::cout << "ID: " << pedido->idPedido
                   << " | Fecha: " << pedido->fecha
                   << " | Hora: " << pedido->hora
@@ -51,7 +51,6 @@ namespace {
                   << " | Monto: ";
 
         imprimirMonto(pedido->montoCentavos);
-
         std::cout << "\n";
     }
 }
@@ -368,6 +367,7 @@ void AVL::inordenRecursivo(NodoAVL* nodo, const Pedido** resultados, int& contad
 
 void AVL::obtenerTop30(const Pedido** resultados, int& contador) {
     contador = 0;
+    if (resultados == nullptr) return; // Validación de seguridad
     inordenRecursivo(raiz, resultados, contador);
 }
 
@@ -377,12 +377,16 @@ void AVL::inorden() {
         return;
     }
 
-    std::cout << "\n--- PRIMEROS 30 PEDIDOS EN ORDEN CRONOLOGICO ---\n";
-
+    // Usamos la misma lógica del gestor para no duplicar código
+    const Pedido* top30[30];
     int contador = 0;
 
-    inordenRecursivo(raiz, contador);
+    obtenerTop30(top30, contador);
 
+    std::cout << "\n--- PRIMEROS 30 PEDIDOS EN ORDEN CRONOLOGICO ---\n";
+    for (int i = 0; i < contador; ++i) {
+        imprimirPedido(top30[i]);
+    }
     std::cout << "Pedidos mostrados: " << contador << "\n";
 }
 
