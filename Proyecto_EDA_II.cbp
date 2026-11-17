@@ -32,26 +32,20 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="benchmark.cpp" />
 		<Unit filename="estructuras/AVL.cpp" />
 		<Unit filename="estructuras/AVL.h" />
 		<Unit filename="estructuras/MinHeap.cpp" />
 		<Unit filename="estructuras/MinHeap.h" />
 		<Unit filename="estructuras/TablaHash.cpp" />
 		<Unit filename="estructuras/TablaHash.h" />
-		<Unit filename="main.cpp" />
+		<Unit filename="main.cpp">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
 		<Unit filename="modelos/Pedido.h" />
-		<Unit filename="pruebas/pruebasAVL.cpp">
-			<Option compile="0" />
-			<Option link="0" />
-		</Unit>
-		<Unit filename="pruebas/pruebasHash.cpp">
-			<Option compile="0" />
-			<Option link="0" />
-		</Unit>
-		<Unit filename="pruebas/pruebasHeap.cpp">
-			<Option compile="0" />
-			<Option link="0" />
-		</Unit>
+		<Unit filename="pruebas/pruebasAVL.cpp" />
+		<Unit filename="pruebas/pruebasHash.cpp" />
+		<Unit filename="pruebas/pruebasHeap.cpp" />
 		<Unit filename="servicios/GestorPedidos.cpp" />
 		<Unit filename="servicios/GestorPedidos.h" />
 		<Unit filename="servicios/LectorCSV.cpp" />
